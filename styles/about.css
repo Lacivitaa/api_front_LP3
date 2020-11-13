@@ -1,0 +1,134 @@
+body * {
+    margin:0;
+    padding: 0;
+}
+.abous{
+    font-family: 'Roboto Slab', sans-serif;
+    background:rgb(0, 0, 0,0.5) url(../img/bg1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-blend-mode: overlay;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #f3f4f5;
+    padding: 0;
+}
+.about-us{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+.quem-somos{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 50px;
+    font-weight: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.quem-somos span{
+    width: 60%;
+    align-items: center;
+    text-align: center;
+}
+.cards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    background-color: #f3f4f5;
+    border-radius: 15px;
+    color: #0B2EDE;
+}
+.card-img{
+    border-radius: 5px;
+}
+.cards .card{
+    width: 16rem;
+    margin: 20px;
+}
+.card p{
+    font-size: 14px;
+}
+.card-img1{
+    width: 100%;
+    height: 15rem;
+    background-image: url("../img/who2.png");
+    background-size: cover;
+    background-position: center center;
+}
+.card-img2{
+    width: 100%;
+    height: 15rem;
+    background-image: url("../img/who1.png");
+    background-size: cover;
+    background-position: center center;
+}
+.card-img3{
+    width: 100%;
+    height: 15rem;
+    background-image: url("../img/who3.png");
+    background-size: cover;
+    background-position: center center;
+}
+.card-img4{
+    width: 100%;
+    height: 15rem;
+    background-image: url("../img/who4.png");
+    background-size: cover;
+    background-position: center center;
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 80px;
+    background: linear-gradient(to top, transparent, rgba(0,0,0,0.6));
+}
+header .logo{
+    font-family: "Vampiro One", cursive;
+    font-size: 40px;
+    font-weight: 400;
+    float: left;
+    color: #f3f4f5;
+}
+header .logo a{
+    text-decoration: none;
+    color: #f3f4f5;
+}
+header .menu{
+    float: right;
+    margin-top: 5px;
+    margin-right: 80px; 
+}
+header ul li{
+    display: inline;
+}
+header ul li a{
+    text-decoration: none;
+    font-size: 16px;
+    color: #f3f4f5;
+    margin:60px 60px;
+}
+.content {
+    max-width: 55%;
+    padding: 250px 80px 0;
+    color: #0B4CE4;
+}
+.content h1{
+    font-size: 40px;
+    font-family: 'Bebas Neue', cursive;
+    font-weight:100;
+}
+.content p{
+    font-size: 25px;
+    padding: 25px 0;
+}

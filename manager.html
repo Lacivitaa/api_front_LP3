@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Stoppin - Parking Lot Manager</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="icon" type="image/png" href="img/icon.title.png" />
+        <link rel="stylesheet" type="text/css" href="styles/fonts.css">
+        <link rel="stylesheet" href="styles/manager.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            .modal-header, h4, .close {
+              background-color: #272B9B;
+              color:white !important;
+              text-align: center;
+              font-size: 30px;
+            }
+            .h4{
+                font-family: 'Bebas Neue', cursive;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <header>
+                <div class="logo">Stoppin</div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="index.html">Página inicial</a></li>
+                        <li><a href="manager.html">Gerenciamento</a></li>
+                        <li><a href="about.html">Sobre nós</a></li>
+                    </ul>
+                </div>
+            </header>
+            <div class="rows">
+                <div class="col">
+                    <h1>Gerenciamento</h1>
+                    <p>
+                        Aqui você pode admnistrar todas as vagas e ocupações do seu estacionamento
+                    </p>
+                </div>
+                <div class="col">
+                    <div class="card card1" id="addVeiculo">
+                    </div>
+                    <div class="card card2" id="remVeiculo">
+                    </div>
+                    <div class="card card666" id="admEstacionamento">                   
+                    </div>
+                    <div class="card card4" id="addCliente">
+                    </div>
+                    <div class="card card5" id="remCliente">
+                    </div>
+                    <div class="card card6" id="editCliente">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Administrar Estacionamento-->
+        <div class="modal fade" id="modelAdmEstacionamento" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" style="padding:35px 50px;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4>Administração do Estacionamento</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <form role="form">
+                    <label for="relVagas"><span class="glyphicon glyphicon-align-justify"></span> Relação de vagas</label>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="cardmenu" id="vaga1">E1</div>
+                            <div class="cardmenu" id="vaga2">E2</div>
+                            <div class="cardmenu" id="vaga3">E3</div>
+                            <div class="cardmenu" id="vaga4">E4</div>
+                            <div class="cardmenu" id="vaga5">E5</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="cardmenu" id="vaga6">E6</div>
+                            <div class="cardmenu" id="vaga7">E7</div>
+                            <div class="cardmenu" id="vaga8">E8</div>
+                            <div class="cardmenu" id="vaga9">E9</div>
+                            <div class="cardmenu" id="vaga10">E10</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="cardmenu" id="vaga11">E11</div>
+                            <div class="cardmenu" id="vaga12">E12</div>
+                            <div class="cardmenu" id="vaga13">E13</div>
+                            <div class="cardmenu" id="vaga14">E14</div>
+                            <div class="cardmenu" id="vaga15">E15</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="cardmenu" id="vaga16">E16</div>
+                            <div class="cardmenu" id="vaga17">E17</div>
+                            <div class="cardmenu" id="vaga18">E18</div>
+                            <div class="cardmenu" id="vaga19">E19</div>
+                            <div class="cardmenu" id="vaga20">E20</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="valorHora"><span class="glyphicon glyphicon-dashboard"></span> Valor da hora</label>
+                      <input type="text" class="form-control" id="valorHora">
+                    </div>       
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!--Adicionar Cliente-->
+        <div class="modal fade" id="modeladdCliente" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" style="padding:35px 50px;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4>Adicionar cliente</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                  <form role="form">
+                    <div class="form-group">
+                      <label for="nomeCliente"><span class="glyphicon glyphicon-user"></span> Nome</label>
+                      <input type="text" class="form-control" id="nomeCliente" placeholder="Digite o nome">
+                    </div>
+                    <div class="form-group">
+                      <label for="cpfCliente"><span class="glyphicon glyphicon-file"></span> CPF</label>
+                      <input type="text" class="form-control" id="cpfCliente" placeholder="Digite o cpf">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefoneCliente"><span class="glyphicon glyphicon-earphone"></span> Telefone</label>
+                        <input type="text" class="form-control" id="telefoneCliente" placeholder="Digite o telefone">
+                      </div>
+                      <div class="form-group">
+                        <label for="emailCliente"><span class="glyphicon glyphicon-envelope"></span> E-mail</label>
+                        <input type="text" class="form-control" id="emailCliente" placeholder="Digite o e-mail">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Cadastrar</button>
+                        
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div> 
+          <!--Remover Cliente-->
+          <div class="modal fade" id="modelremCliente" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" style="padding:35px 50px;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4>Remover cliente</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                  <form role="form">
+                    <div class="form-group">
+                      <label for="cpfCliente"><span class="glyphicon glyphicon-file"></span> CPF</label>
+                      <input type="text" class="form-control" id="cpfCliente" placeholder="Digite o cpf">
+                    </div>
+                      <div class="modal-footer">
+                        <button data-toggle="modal" data-target="#modelConfirm" type="button" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Remover</button>
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div> 
+          <!--Confirmação Remover-->
+          <div class="modal fade" id="modelConfirm" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" style="padding:35px 50px;">
+                  <h4>Confirmar remoção</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                  <form role="form">
+                    <div class="form-group">
+                      <label for="cpfCliente"><span class="glyphicon glyphicon-file"></span> Tem certeza que deseja remover ?</label>
+                    </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal" id="btnSimRem"><span class="glyphicon glyphicon-ok"></span> Sim</button>
+                        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Não</button>
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Editar Cliente-->
+          <div class="modal fade" id="modeleditCliente" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" style="padding:35px 50px;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><span class="glyphicon glyphicon-user"></span>   Editar cliente</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                  <form role="form">
+                    <div class="form-group">
+                      <label for="cpfCliente"><span class="glyphicon glyphicon-file"></span> CPF</label>
+                      <input type="text" class="form-control" id="cpfCliente" placeholder="Digite o cpf">
+                    </div>
+                      <div class="modal-footer">
+                        <button data-toggle="modal" data-target="#modelalterCliente" type="button" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Edição Cliente-->
+          <div class="modal fade" id="modelalterCliente" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" style="padding:35px 50px;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4>Editar cliente</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                  <form role="form">
+                    <div class="form-group">
+                      <label for="nomeCliente"><span class="glyphicon glyphicon-user"></span> Nome</label>
+                      <input type="text" class="form-control" id="nomeCliente" placeholder="Digite o nome">
+                    </div>
+                    <div class="form-group">
+                      <label for="cpfCliente"><span class="glyphicon glyphicon-file"></span> CPF</label>
+                      <input type="text" class="form-control" id="cpfCliente" placeholder="Digite o cpf">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefoneCliente"><span class="glyphicon glyphicon-earphone"></span> Telefone</label>
+                        <input type="text" class="form-control" id="telefoneCliente" placeholder="Digite o telefone">
+                      </div>
+                      <div class="form-group">
+                        <label for="emailCliente"><span class="glyphicon glyphicon-envelope"></span> E-mail</label>
+                        <input type="text" class="form-control" id="emailCliente" placeholder="Digite o e-mail">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Salvar</button>      
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Adicionar Veículo--> 
+          <div class="modal fade" id="modeladdVeiculo" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" style="padding:35px 50px;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4>Reservar Vaga</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                  <form role="form">
+                    <div class="form-group">
+                      <label for="nomeCliente"><span class="glyphicon glyphicon-tag"></span> Placa</label>
+                      <input type="text" class="form-control" id="placaVeiculo" placeholder="Digite a placa do veículo">
+                    </div>
+                    <div class="form-group">
+                        <label for="nomeCliente"><span class="glyphicon glyphicon-compressed"></span> Modelo</label>
+                        <input type="text" class="form-control" id="placaVeiculo" placeholder="Digite o modelo do veículo">
+                      </div>
+                    <div class="form-group">
+                      <label for="cpfCliente"><span class="glyphicon glyphicon-file"></span> CPF</label>
+                      <input type="text" class="form-control" id="cpfCliente" placeholder="Digite o CPF">
+                    </div>
+                    <div class="form-group">
+                        <label for="vagasDisp"><span class="glyphicon glyphicon-paste"></span> Vagas disponível</label>
+                        <select class="form-control" id="vagasSelect"></select>
+                      </div>
+                    <div class="form-group">
+                        <label for="nomeCliente"><span class="glyphicon glyphicon-file"></span> Nome</label>
+                        <input readonly type="text" class="form-control" id="cpfCliente">
+                      </div>
+                    <div class="form-group">
+                        <label for="telefoneCliente"><span class="glyphicon glyphicon-earphone"></span> Telefone</label>
+                        <input readonly type="text" class="form-control" id="telefoneCliente">
+                      </div>
+                      <div class="form-group">
+                        <label for="emailCliente"><span class="glyphicon glyphicon-envelope"></span> E-mail</label>
+                        <input readonly type="text" class="form-control" id="emailCliente">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Adicionar</button>
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Remover Veículo-->
+          <div class="modal fade" id="modelremVeiculo" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" style="padding:35px 50px;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4>Remover reserva</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                  <form role="form">
+                    <div class="form-group">
+                        <label for="vagasDisp"><span class="glyphicon glyphicon-paste"></span> Vagas ocupadas</label>
+                        <select class="form-control" id="vagasSelect"></select>
+                      </div>
+                    <div class="form-group">
+                      <div class="modal-footer">
+                        <button data-toggle="modal" data-target="#modelConfirm" type="button" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Remover</button>
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--A partir daqui não sobrevive nada-->
+        <script>
+            $(document).ready(function(){
+                $("#addVeiculo").click(function(){
+                    $('#modeladdVeiculo').modal();
+                });
+                $("#remVeiculo").click(function(){
+                    $('#modelremVeiculo').modal();
+                });
+                $("#admEstacionamento").click(function(){
+                    $('#modelAdmEstacionamento').modal();
+                }); 
+                $("#addCliente").click(function(){
+                    $('#modeladdCliente').modal();
+                });
+                $("#remCliente").click(function(){
+                    $('#modelremCliente').modal();
+                });
+                $("#editCliente").click(function(){
+                    $('#modeleditCliente').modal();
+                }); 
+
+            });
+        </script>
+    </body>  
+</html>
