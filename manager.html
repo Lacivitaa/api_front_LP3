@@ -46,7 +46,7 @@
                     </div>
                     <div class="card card2" id="remVeiculo">
                     </div>
-                    <div class="card card666" id="admEstacionamento">                   
+                    <div class="card card666" id="admEstacionamento">
                     </div>
                     <div class="card card4" id="addCliente">
                     </div>
@@ -101,7 +101,7 @@
                     <div class="form-group">
                       <label for="valorHora"><span class="glyphicon glyphicon-dashboard"></span> Valor da hora</label>
                       <input type="text" class="form-control" id="valorHora">
-                    </div>       
+                    </div>
                   </form>
                 </div>
               </div>
@@ -119,30 +119,29 @@
                   <form role="form">
                     <div class="form-group">
                       <label for="nomeCliente"><span class="glyphicon glyphicon-user"></span> Nome</label>
-                      <input type="text" class="form-control" id="nomeCliente" placeholder="Digite o nome">
+                      <input type="text" class="form-control" id="nomeClienteAdd" placeholder="Digite o nome">
                     </div>
                     <div class="form-group">
                       <label for="cpfCliente"><span class="glyphicon glyphicon-file"></span> CPF</label>
-                      <input type="text" class="form-control" id="cpfCliente" placeholder="Digite o cpf">
+                      <input type="text" class="form-control" id="cpfClienteAdd" placeholder="Digite o cpf">
                     </div>
                     <div class="form-group">
                         <label for="telefoneCliente"><span class="glyphicon glyphicon-earphone"></span> Telefone</label>
-                        <input type="text" class="form-control" id="telefoneCliente" placeholder="Digite o telefone">
+                        <input type="text" class="form-control" id="telefoneClienteAdd" placeholder="Digite o telefone">
                       </div>
                       <div class="form-group">
                         <label for="emailCliente"><span class="glyphicon glyphicon-envelope"></span> E-mail</label>
-                        <input type="text" class="form-control" id="emailCliente" placeholder="Digite o e-mail">
+                        <input type="text" class="form-control" id="emailClienteAdd" placeholder="Digite o e-mail">
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                        <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Cadastrar</button>
-                        
+                        <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal" onclick="AdicionarCliente()"><span class="glyphicon glyphicon-ok"></span> Cadastrar</button>
                       </div>
                   </form>
                 </div>
               </div>
             </div>
-          </div> 
+          </div>
           <!--Remover Cliente-->
           <div class="modal fade" id="modelremCliente" role="dialog">
             <div class="modal-dialog">
@@ -155,7 +154,7 @@
                   <form role="form">
                     <div class="form-group">
                       <label for="cpfCliente"><span class="glyphicon glyphicon-file"></span> CPF</label>
-                      <input type="text" class="form-control" id="cpfCliente" placeholder="Digite o cpf">
+                      <input type="text" class="form-control" id="cpfClienteRemove" placeholder="Digite o cpf">
                     </div>
                       <div class="modal-footer">
                         <button data-toggle="modal" data-target="#modelConfirm" type="button" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Remover</button>
@@ -164,7 +163,7 @@
                 </div>
               </div>
             </div>
-          </div> 
+          </div>
           <!--Confirmação Remover-->
           <div class="modal fade" id="modelConfirm" role="dialog">
             <div class="modal-dialog">
@@ -178,7 +177,7 @@
                       <label for="cpfCliente"><span class="glyphicon glyphicon-file"></span> Tem certeza que deseja remover ?</label>
                     </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal" id="btnSimRem"><span class="glyphicon glyphicon-ok"></span> Sim</button>
+                        <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal" id="btnSimRem" onclick="RemoverCliente()"><span class="glyphicon glyphicon-ok"></span> Sim</button>
                         <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Não</button>
                       </div>
                   </form>
@@ -192,16 +191,16 @@
               <div class="modal-content">
                 <div class="modal-header" style="padding:35px 50px;">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4><span class="glyphicon glyphicon-user"></span>   Editar cliente</h4>
+                  <h4><span class="glyphicon glyphicon-user"></span>Editar cliente</h4>
                 </div>
                 <div class="modal-body" style="padding:40px 50px;">
                   <form role="form">
                     <div class="form-group">
                       <label for="cpfCliente"><span class="glyphicon glyphicon-file"></span> CPF</label>
-                      <input type="text" class="form-control" id="cpfCliente" placeholder="Digite o cpf">
+                      <input type="text" class="form-control" id="cpfClienteEditSearch" placeholder="Digite o cpf">
                     </div>
                       <div class="modal-footer">
-                        <button data-toggle="modal" data-target="#modelalterCliente" type="button" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                        <button data-toggle="modal" data-target="#modelalterCliente" type="button" class="btn btn-default btn-default pull-left" data-dismiss="modal" onclick="BuscarClieteEditar()"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
                       </div>
                   </form>
                 </div>
@@ -220,29 +219,29 @@
                   <form role="form">
                     <div class="form-group">
                       <label for="nomeCliente"><span class="glyphicon glyphicon-user"></span> Nome</label>
-                      <input type="text" class="form-control" id="nomeCliente" placeholder="Digite o nome">
+                      <input type="text" class="form-control" id="nomeClienteEdit" placeholder="Digite o nome">
                     </div>
                     <div class="form-group">
                       <label for="cpfCliente"><span class="glyphicon glyphicon-file"></span> CPF</label>
-                      <input type="text" class="form-control" id="cpfCliente" placeholder="Digite o cpf">
+                      <input type="text" class="form-control" id="cpfClienteEdit" placeholder="Digite o cpf">
                     </div>
                     <div class="form-group">
                         <label for="telefoneCliente"><span class="glyphicon glyphicon-earphone"></span> Telefone</label>
-                        <input type="text" class="form-control" id="telefoneCliente" placeholder="Digite o telefone">
+                        <input type="text" class="form-control" id="telefoneClienteEdit" placeholder="Digite o telefone">
                       </div>
                       <div class="form-group">
                         <label for="emailCliente"><span class="glyphicon glyphicon-envelope"></span> E-mail</label>
-                        <input type="text" class="form-control" id="emailCliente" placeholder="Digite o e-mail">
+                        <input type="text" class="form-control" id="emailClienteEdit" placeholder="Digite o e-mail">
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Salvar</button>      
+                        <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal" onclick="SalvarClienteEditar()"><span class="glyphicon glyphicon-ok"></span> Salvar</button>      
                       </div>
                   </form>
                 </div>
               </div>
             </div>
           </div>
-          <!--Adicionar Veículo--> 
+          <!--Adicionar Veículo-->
           <div class="modal fade" id="modeladdVeiculo" role="dialog">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -257,28 +256,24 @@
                       <input type="text" class="form-control" id="placaVeiculo" placeholder="Digite a placa do veículo">
                     </div>
                     <div class="form-group">
-                        <label for="nomeCliente"><span class="glyphicon glyphicon-compressed"></span> Modelo</label>
-                        <input type="text" class="form-control" id="placaVeiculo" placeholder="Digite o modelo do veículo">
-                      </div>
-                    <div class="form-group">
                       <label for="cpfCliente"><span class="glyphicon glyphicon-file"></span> CPF</label>
-                      <input type="text" class="form-control" id="cpfCliente" placeholder="Digite o CPF">
+                      <input type="text" class="form-control" id="cpfClienteAdicionarVaga" placeholder="Digite o CPF" onblur="BuscaClienteCadastro()">
                     </div>
                     <div class="form-group">
                         <label for="vagasDisp"><span class="glyphicon glyphicon-paste"></span> Vagas disponível</label>
                         <select class="form-control" id="vagasSelect"></select>
                       </div>
                     <div class="form-group">
-                        <label for="nomeCliente"><span class="glyphicon glyphicon-file"></span> Nome</label>
-                        <input readonly type="text" class="form-control" id="cpfCliente">
+                        <label for="nomeClienteAdicionarVaga"><span class="glyphicon glyphicon-file"></span> Nome</label>
+                        <input readonly type="text" class="form-control" id="nomeClienteAdicionarVaga">
                       </div>
                     <div class="form-group">
-                        <label for="telefoneCliente"><span class="glyphicon glyphicon-earphone"></span> Telefone</label>
-                        <input readonly type="text" class="form-control" id="telefoneCliente">
+                        <label for="telefoneClienteAdicionarVaga"><span class="glyphicon glyphicon-earphone"></span> Telefone</label>
+                        <input readonly type="text" class="form-control" id="telefoneClienteAdicionarVaga">
                       </div>
                       <div class="form-group">
-                        <label for="emailCliente"><span class="glyphicon glyphicon-envelope"></span> E-mail</label>
-                        <input readonly type="text" class="form-control" id="emailCliente">
+                        <label for="emailClienteAdicionarVaga"><span class="glyphicon glyphicon-envelope"></span> E-mail</label>
+                        <input readonly type="text" class="form-control" id="emailClienteAdicionarVaga">
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -314,6 +309,128 @@
           </div>
           <!--A partir daqui não sobrevive nada-->
         <script>
+            var APIRUL = "http://localhost:8080/";
+
+            function AdicionarCliente(){
+              let cliente = {
+                cpf : $('#cpfClienteAdd').val(),
+                email : $('#emailClienteAdd').val(),
+                name : $('#nomeClienteAdd').val(),
+                telefone : $('#telefoneClienteAdd').val(),
+              };
+
+              $.ajax({
+                type: "POST",
+                url: APIRUL + "api/Client",
+                data: JSON.stringify(cliente),
+                success: function(data) { 
+                    alert("Cliente cadastrado com sucesso.");
+                  },
+                  statusCode: {
+                    400: function(response) {
+                      alert('CPF já cadastrado.');
+                    },
+                    500: function(response){
+                      alert('Occoreu um erro inesperado');
+                    }
+                  },
+                contentType: "application/json",
+                dataType: 'json'
+              });
+            };
+
+            function RemoverCliente(){
+              var cpf = $('#cpfClienteRemove').val();
+
+              $.ajax({
+                type: "DELETE",
+                url: APIRUL + "api/Client/deleteByCPF?cpf=" + cpf,
+                success: function(data) { 
+                    alert("Cliente removido com sucesso.");
+                  },
+                  statusCode: {
+                    400: function(response) {
+                      alert('CPF não existe.');
+                    },
+                    500: function(response){
+                      alert('Occoreu um erro inesperado');
+                    }
+                  },
+                contentType: "application/json",
+                dataType: 'json'
+              });
+            };
+
+            function BuscarClieteEditar(){
+              var cpf = $('#cpfClienteEditSearch').val();
+
+              $.ajax({
+                type: "GET",
+                url: APIRUL + "api/Client/cpf?cpf=" + cpf,
+                success: function(data) { 
+                    $('#nomeClienteEdit').val(data.name);
+                    $('#cpfClienteEdit').val(data.cpf);
+                    $('#telefoneClienteEdit').val(data.telefone);
+                    $('#emailClienteEdit').val(data.email);
+                  },
+                  statusCode: {
+                    400: function(response) {
+                      alert('CPF não existe.');
+                    },
+                    500: function(response){
+                      alert('Occoreu um erro inesperado');
+                    }
+                  },
+                contentType: "application/json",
+                dataType: 'json'
+              });
+            };
+
+            function SalvarClienteEditar(){
+              let cliente = {
+                cpf : $('#cpfClienteEdit').val(),
+                email : $('#emailClienteEdit').val(),
+                name : $('#nomeClienteEdit').val(),
+                telefone : $('#telefoneClienteEdit').val(),
+              };
+
+              $.ajax({
+                type: "PUT",
+                url: APIRUL + "api/Client",
+                data: JSON.stringify(cliente),
+                success: function(data) {
+                    alert("Cliente editado com sucesso");
+                  },
+                  statusCode: {
+                    500: function(response){
+                      alert('Occoreu um erro inesperado');
+                    }
+                  },
+                contentType: "application/json",
+                dataType: 'json'
+              });
+            };
+
+            function BuscaClienteCadastro(){
+              var cpf = $('#cpfClienteAdicionarVaga').val();
+              $.ajax({
+                type: "GET",
+                url: APIRUL + "api/Client/cpf?cpf=" + cpf,
+                success: function(data) {
+                    $('#nomeClienteAdicionarVaga').val(data.name);
+                    $('#telefoneClienteAdicionarVaga').val(data.telefone);
+                    $('#emailClienteAdicionarVaga').val(data.email);
+                  },
+                  statusCode: {
+                    500: function(response){
+                      alert('Occoreu um erro inesperado');
+                    }
+                  },
+                contentType: "application/json",
+                dataType: 'json'
+              });
+            }
+
             $(document).ready(function(){
                 $("#addVeiculo").click(function(){
                     $('#modeladdVeiculo').modal();
@@ -333,8 +450,8 @@
                 $("#editCliente").click(function(){
                     $('#modeleditCliente').modal();
                 }); 
-
             });
+
         </script>
-    </body>  
+    </body>
 </html>
