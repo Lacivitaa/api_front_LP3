@@ -70,37 +70,44 @@
                     <label for="relVagas"><span class="glyphicon glyphicon-align-justify"></span> Relação de vagas</label>
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="cardmenu" id="vaga1">E1</div>
-                            <div class="cardmenu" id="vaga2">E2</div>
-                            <div class="cardmenu" id="vaga3">E3</div>
-                            <div class="cardmenu" id="vaga4">E4</div>
-                            <div class="cardmenu" id="vaga5">E5</div>
+                            <div class="cardmenu" id="E1">E1</div>
+                            <div class="cardmenu" id="E2">E2</div>
+                            <div class="cardmenu" id="E3">E3</div>
+                            <div class="cardmenu" id="E4">E4</div>
+                            <div class="cardmenu" id="E5">E5</div>
                         </div>
                         <div class="col-md-3">
-                            <div class="cardmenu" id="vaga6">E6</div>
-                            <div class="cardmenu" id="vaga7">E7</div>
-                            <div class="cardmenu" id="vaga8">E8</div>
-                            <div class="cardmenu" id="vaga9">E9</div>
-                            <div class="cardmenu" id="vaga10">E10</div>
+                            <div class="cardmenu" id="E6">E6</div>
+                            <div class="cardmenu" id="E7">E7</div>
+                            <div class="cardmenu" id="E8">E8</div>
+                            <div class="cardmenu" id="E9">E9</div>
+                            <div class="cardmenu" id="E10">E10</div>
                         </div>
                         <div class="col-md-3">
-                            <div class="cardmenu" id="vaga11">E11</div>
-                            <div class="cardmenu" id="vaga12">E12</div>
-                            <div class="cardmenu" id="vaga13">E13</div>
-                            <div class="cardmenu" id="vaga14">E14</div>
-                            <div class="cardmenu" id="vaga15">E15</div>
+                            <div class="cardmenu" id="E11">E11</div>
+                            <div class="cardmenu" id="E12">E12</div>
+                            <div class="cardmenu" id="E13">E13</div>
+                            <div class="cardmenu" id="E14">E14</div>
+                            <div class="cardmenu" id="E15">E15</div>
                         </div>
                         <div class="col-md-3">
-                            <div class="cardmenu" id="vaga16">E16</div>
-                            <div class="cardmenu" id="vaga17">E17</div>
-                            <div class="cardmenu" id="vaga18">E18</div>
-                            <div class="cardmenu" id="vaga19">E19</div>
-                            <div class="cardmenu" id="vaga20">E20</div>
+                            <div class="cardmenu" id="E16">E16</div>
+                            <div class="cardmenu" id="E17">E17</div>
+                            <div class="cardmenu" id="E18">E18</div>
+                            <div class="cardmenu" id="E19">E19</div>
+                            <div class="cardmenu" id="E20">E20</div>
                         </div>
                     </div>
                     <div class="form-group">
                       <label for="valorHora"><span class="glyphicon glyphicon-dashboard"></span> Valor da hora</label>
                       <input type="text" class="form-control" id="valorHora">
+                    </div>
+                    <div class="form-group">
+                      <label for="valorMensal"><span class="glyphicon glyphicon-dashboard"></span> Valor Mensal</label>
+                      <input type="text" class="form-control" id="valorMensal">
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal" onclick="EditarValores()"><span class="glyphicon glyphicon-ok"></span> Editar Valores</button>
                     </div>
                   </form>
                 </div>
@@ -310,6 +317,7 @@
           <!--A partir daqui não sobrevive nada-->
         <script>
             var APIRUL = "http://localhost:8080/";
+            var valores = [];
 
             function AdicionarCliente(){
               let cliente = {
@@ -429,6 +437,103 @@
                 contentType: "application/json",
                 dataType: 'json'
               });
+            };
+
+            function BuscarOcupacaoDasVagasADM(){
+              $.ajax({
+                type: "GET",
+                url: APIRUL + "api/ParkSlot",
+                success: function(data) {
+                  data.forEach(element => {
+                    if(element.occupied == true){
+                      $('#' + element.name).css('background-color', '#ee394d');
+                    }
+                    else{
+                      $('#' + element.name).css('background-color', '#006600');
+                    }
+                  });
+                },
+                statusCode: {
+                  500: function(response){
+                    alert('Occoreu um erro inesperado');
+                    return null;
+                  }
+                },
+                contentType: "application/json",
+                dataType: 'json'
+              });
+            }
+
+            function BuscaValorDaHoraADM(){
+              $.ajax({
+                type: "GET",
+                url: APIRUL + "api/Value",
+                success: function(data) {
+                  data.forEach(element => {
+                    if(element.occupationType == "MENSALISTA"){
+                      $('#valorMensal').val(element.value);
+                      valores.push(element);
+                    }
+                    else{
+                      $('#valorHora').val(element.value)
+                      valores.push(element);
+                    }
+                  });
+                },
+                statusCode: {
+                  500: function(response){
+                    alert('Occoreu um erro inesperado');
+                    return null;
+                  }
+                },
+                contentType: "application/json",
+                dataType: 'json'
+              });
+            }
+
+            function EditarValores(){
+              let hora = $('#valorHora').val();
+              let mes = $('#valorMensal').val();
+              
+              let valorMes = valores.find(element => element.occupationType == "MENSALISTA");
+              let valorHora = valores.find(element => element.occupationType == "HORA");
+
+              valorMes.value = mes;
+              valorHora.value = hora;
+
+              $.ajax({
+                type: "PUT",
+                url: APIRUL + "api/Value",
+                data: JSON.stringify(valorMes),
+                success: function(data) {
+                  alert("Valor mensal alterado com sucesso");
+                },
+                statusCode: {
+                  500: function(response){
+                    alert('Occoreu um erro inesperado');
+                    return null;
+                  }
+                },
+                contentType: "application/json",
+                dataType: 'json'
+              });
+
+              $.ajax({
+                type: "PUT",
+                url: APIRUL + "api/Value",
+                data: JSON.stringify(valorHora),
+                success: function(data) {
+                  alert("Valor da hora alterado com sucesso");
+                },
+                statusCode: {
+                  500: function(response){
+                    alert('Occoreu um erro inesperado');
+                    return null;
+                  }
+                },
+                contentType: "application/json",
+                dataType: 'json'
+              });
             }
 
             $(document).ready(function(){
@@ -440,6 +545,8 @@
                 });
                 $("#admEstacionamento").click(function(){
                     $('#modelAdmEstacionamento').modal();
+                    BuscarOcupacaoDasVagasADM();
+                    BuscaValorDaHoraADM();
                 }); 
                 $("#addCliente").click(function(){
                     $('#modeladdCliente').modal();
