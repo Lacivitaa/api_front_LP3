@@ -240,6 +240,7 @@
                         <label for="emailCliente"><span class="glyphicon glyphicon-envelope"></span> E-mail</label>
                         <input type="text" class="form-control" id="emailClienteEdit" placeholder="Digite o e-mail">
                       </div>
+                      <input class="hidden" hidden id="idClienteEdit">
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal" onclick="SalvarClienteEditar()"><span class="glyphicon glyphicon-ok"></span> Salvar</button>      
                       </div>
@@ -260,7 +261,7 @@
                   <form role="form">
                     <div class="form-group">
                       <label for="nomeCliente"><span class="glyphicon glyphicon-tag"></span> Placa</label>
-                      <input type="text" class="form-control" id="placaVeiculo" placeholder="Digite a placa do veículo">
+                      <input type="text" class="form-control" id="placaVeiculoAdicionarVaga" placeholder="Digite a placa do veículo">
                     </div>
                     <div class="form-group">
                       <label for="cpfCliente"><span class="glyphicon glyphicon-file"></span> CPF</label>
@@ -273,7 +274,8 @@
                     <div class="form-group">
                         <label for="nomeClienteAdicionarVaga"><span class="glyphicon glyphicon-file"></span> Nome</label>
                         <input readonly type="text" class="form-control" id="nomeClienteAdicionarVaga">
-                      </div>
+                    </div>
+                    <input class="hidden" hidden id="idClienteAdicionarVaga">
                     <div class="form-group">
                         <label for="telefoneClienteAdicionarVaga"><span class="glyphicon glyphicon-earphone"></span> Telefone</label>
                         <input readonly type="text" class="form-control" id="telefoneClienteAdicionarVaga">
@@ -284,7 +286,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                        <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Adicionar</button>
+                        <button type="submit" class="btn btn-success btn-default pull-left" data-dismiss="modal" onclick="AdicionarOcupacao()"><span class="glyphicon glyphicon-ok"></span> Adicionar</button>
                       </div>
                   </form>
                 </div>
@@ -380,6 +382,7 @@
                     $('#cpfClienteEdit').val(data.cpf);
                     $('#telefoneClienteEdit').val(data.telefone);
                     $('#emailClienteEdit').val(data.email);
+                    $('#idClienteEdit').val(data.id);
                   },
                   statusCode: {
                     400: function(response) {
@@ -400,6 +403,7 @@
                 email : $('#emailClienteEdit').val(),
                 name : $('#nomeClienteEdit').val(),
                 telefone : $('#telefoneClienteEdit').val(),
+                id : $('#idClienteEdit').val()
               };
 
               $.ajax({
@@ -428,6 +432,7 @@
                     $('#nomeClienteAdicionarVaga').val(data.name);
                     $('#telefoneClienteAdicionarVaga').val(data.telefone);
                     $('#emailClienteAdicionarVaga').val(data.email);
+                    $('#idClienteAdicionarVaga').val(data.id);
                   },
                   statusCode: {
                     500: function(response){
@@ -536,9 +541,74 @@
               });
             }
 
+            function BuscarVagasDisponiveisParaReserva(){
+              $.ajax({
+                type: "GET",
+                url: APIRUL + "api/ParkSlot",
+                success: function(data) {
+                  let select = document.getElementById('vagasSelect');
+                  data.forEach(element => {
+                      if(element.occupied == false){
+                        var opt = document.createElement('option');
+                        opt.value = element.id;
+                        opt.innerHTML = element.name;
+                        select.add(opt);
+                      }
+                  });
+                },
+                statusCode: {
+                  500: function(response){
+                    alert('Occoreu um erro inesperado');
+                    return null;
+                  }
+                },
+                contentType: "application/json",
+                dataType: 'json'
+              });
+            }
+
+            function AdicionarOcupacao(){
+             let select = document.getElementById('vagasSelect');
+             var parkslot = select.options[select.selectedIndex];
+
+             let ocupacao =  {
+              client : {
+                cpf : $('#cpfClienteAdicionarVaga').val(),
+                email :  $('#emailClienteAdicionarVaga').val(),
+                id : $('#idClienteAdicionarVaga').val(),
+                name :  $('#nomeClienteAdicionarVaga').val(),
+                telefone : $('#telefoneClienteAdicionarVaga').val()
+              },
+              occupationType: "HORA",
+              parkSlot : {
+                id : parkslot.value,
+                name : parkslot.text,
+                occupied : true
+              },
+              placa : $('#placaVeiculoAdicionarVaga').val()
+             };
+
+              $.ajax({
+                type: "POST",
+                url: APIRUL + "api/Occupation",
+                data: JSON.stringify(ocupacao),
+                success: function(data) {
+                },
+                statusCode: {
+                  500: function(response){
+                    alert('Occoreu um erro inesperado');
+                    return null;
+                  }
+                },
+                contentType: "application/json",
+                dataType: 'json'
+              });
+            }
+
             $(document).ready(function(){
                 $("#addVeiculo").click(function(){
                     $('#modeladdVeiculo').modal();
+                    BuscarVagasDisponiveisParaReserva();
                 });
                 $("#remVeiculo").click(function(){
                     $('#modelremVeiculo').modal();
